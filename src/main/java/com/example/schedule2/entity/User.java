@@ -22,9 +22,6 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
     public User() {
     }

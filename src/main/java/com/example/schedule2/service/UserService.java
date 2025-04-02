@@ -22,7 +22,7 @@ public class UserService {
 
     public SignUpResponseDto signUp(String username, String password, String email ) {
 
-        User user = new User(username, password,email);
+        User user = new User(username, password, email);
 
         User savedUser = userRepository.save(user);
 
