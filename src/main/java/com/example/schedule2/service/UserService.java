@@ -1,7 +1,7 @@
 package com.example.schedule2.service;
 
 
-import com.example.schedule2.dto.SignUpRequestDto;
+
 import com.example.schedule2.dto.SignUpResponseDto;
 import com.example.schedule2.dto.UserResponseDto;
 import com.example.schedule2.entity.User;
@@ -9,6 +9,7 @@ import com.example.schedule2.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
@@ -40,5 +41,18 @@ public class UserService {
         User findUser = optionalUser.get();
 
         return new UserResponseDto(findUser.getUserName(),findUser.getEmail());
+    }
+
+    @Transactional
+    public void updatePassword(Long id, String prePassword, String newPassword) {
+
+        User findUser = userRepository.findByIdOrElseThrow(id);
+
+        if (!findUser.getPassword().equals(prePassword)){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다.");
+        }
+
+        findUser.updatePassword(newPassword);
+
     }
 }
