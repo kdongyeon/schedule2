@@ -24,8 +24,8 @@ public class ScheduleService {
         Schedule schedule = new Schedule(title, content);
         schedule.setUser(findUser);
 
-        Schedule savedBoard = scheduleRepository.save(schedule);
+        Schedule saved = scheduleRepository.save(schedule);
 
-        return new ScheduleResponseDto(savedBoard.getId(),savedBoard.getTitle(),savedBoard.getContent());
+        return new ScheduleResponseDto(saved.getId(), saved.getTitle(), saved.getContent());
     }
 }

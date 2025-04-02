@@ -10,11 +10,11 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findUserByUserName(String username);
+    Optional<User> findUserByUserName(String userName);
 
-    default User findUserByUserNameOrElseThrow(String username){
-        return findUserByUserName(username).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exit username=" + username));
+    default User findUserByUserNameOrElseThrow(String userName){
+        return findUserByUserName(userName).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exit userName=" + userName));
     }
 
     default User findByIdOrElseThrow(Long id){

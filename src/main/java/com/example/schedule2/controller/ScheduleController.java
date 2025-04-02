@@ -18,12 +18,13 @@ public class ScheduleController {
 
     private final ScheduleService scheduleService;
 
+    // 일정 생성 기능
     @PostMapping
     public ResponseEntity<ScheduleResponseDto> save(@RequestBody CreateScheduleRequestDto requestDto) {
 
 
         ScheduleResponseDto scheduleResponseDto = scheduleService.save(requestDto.getTitle(), requestDto.getContent(), requestDto.getUsername());
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(scheduleResponseDto, HttpStatus.CREATED);
     }
 }
