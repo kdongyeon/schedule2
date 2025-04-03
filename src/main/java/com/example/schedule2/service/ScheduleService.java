@@ -1,6 +1,6 @@
 package com.example.schedule2.service;
 
-import com.example.schedule2.dto.ScheduleResponseDto;
+import com.example.schedule2.dto.response.ScheduleResponseDto;
 
 import com.example.schedule2.entity.Schedule;
 import com.example.schedule2.entity.User;
@@ -10,11 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -25,9 +21,9 @@ public class ScheduleService {
 
 
     // 일정 저장 기능
-    public ScheduleResponseDto save(String title, String content, String userName) {
+    public ScheduleResponseDto save(String title, String content, String writerUser) {
 
-        User findUser = userRepository.findUserByUserNameOrElseThrow(userName);
+        User findUser = userRepository.findUserByUserNameOrElseThrow(writerUser);
 
         Schedule schedule = new Schedule(title, content);
         schedule.setUser(findUser);

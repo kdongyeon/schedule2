@@ -2,11 +2,8 @@ package com.example.schedule2.service;
 
 
 
-import com.example.schedule2.dto.ScheduleResponseDto;
-import com.example.schedule2.dto.SignUpResponseDto;
-import com.example.schedule2.dto.UpdateUserRequestDto;
-import com.example.schedule2.dto.UserResponseDto;
-import com.example.schedule2.entity.Schedule;
+import com.example.schedule2.dto.response.SignUpResponseDto;
+import com.example.schedule2.dto.response.UserResponseDto;
 import com.example.schedule2.entity.User;
 import com.example.schedule2.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

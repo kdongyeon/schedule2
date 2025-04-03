@@ -1,4 +1,4 @@
-package com.example.schedule2.dto;
+package com.example.schedule2.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,5 +9,5 @@ public class UpdateScheduleRequestDto {
 
     private String title;
     private String content;
-    private String username;
+    private String writerUser;
 }

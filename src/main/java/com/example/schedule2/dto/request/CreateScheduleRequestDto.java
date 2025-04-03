@@ -1,4 +1,4 @@
-package com.example.schedule2.dto;
+package com.example.schedule2.dto.request;
 
 import lombok.Getter;
 
@@ -7,11 +7,11 @@ public class CreateScheduleRequestDto {
 
     private final String title;
     private final String content;
-    private final String username;
+    private final String writerUser;
 
-    public CreateScheduleRequestDto(String title, String content, String username) {
+    public CreateScheduleRequestDto(String title, String content, String writerUser) {
         this.title = title;
         this.content = content;
-        this.username = username;
+        this.writerUser = writerUser;
     }
 }

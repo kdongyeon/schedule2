@@ -1,7 +1,11 @@
 package com.example.schedule2.controller;
 
 
-import com.example.schedule2.dto.*;
+import com.example.schedule2.dto.request.SignUpRequestDto;
+import com.example.schedule2.dto.request.UpdatePasswordRequestDto;
+import com.example.schedule2.dto.response.SignUpResponseDto;
+import com.example.schedule2.dto.response.UpdateUserRequestDto;
+import com.example.schedule2.dto.response.UserResponseDto;
 import com.example.schedule2.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -39,7 +43,7 @@ public class UserController {
     }
 
     // 비밀번호 수정
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/password")
     public ResponseEntity<Void> updatePassword(
             @PathVariable Long id,
             @RequestBody UpdatePasswordRequestDto requestDto
@@ -67,5 +71,8 @@ public class UserController {
         userService.updateUser(id, requestDto.getUsername(),requestDto.getEmail());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    // 로그인 기능
+
 
 }

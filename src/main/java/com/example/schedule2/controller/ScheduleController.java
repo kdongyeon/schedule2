@@ -1,9 +1,8 @@
 package com.example.schedule2.controller;
 
-import com.example.schedule2.dto.CreateScheduleRequestDto;
-import com.example.schedule2.dto.ScheduleResponseDto;
-import com.example.schedule2.dto.UpdateScheduleRequestDto;
-import com.example.schedule2.dto.UpdateUserRequestDto;
+import com.example.schedule2.dto.request.CreateScheduleRequestDto;
+import com.example.schedule2.dto.response.ScheduleResponseDto;
+import com.example.schedule2.dto.request.UpdateScheduleRequestDto;
 import com.example.schedule2.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,7 +23,7 @@ public class ScheduleController {
     public ResponseEntity<ScheduleResponseDto> save(@RequestBody CreateScheduleRequestDto requestDto) {
 
 
-        ScheduleResponseDto scheduleResponseDto = scheduleService.save(requestDto.getTitle(), requestDto.getContent(), requestDto.getUsername());
+        ScheduleResponseDto scheduleResponseDto = scheduleService.save(requestDto.getTitle(), requestDto.getContent(), requestDto.getWriterUser());
 
         return new ResponseEntity<>(scheduleResponseDto, HttpStatus.CREATED);
     }
@@ -57,7 +56,7 @@ public class ScheduleController {
             @PathVariable Long id,
             @RequestBody UpdateScheduleRequestDto requestDto
     ){
-        scheduleService.updateSchedule(id, requestDto.getTitle(),requestDto.getContent(),requestDto.getUsername());
+        scheduleService.updateSchedule(id, requestDto.getTitle(),requestDto.getContent(),requestDto.getWriterUser());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
