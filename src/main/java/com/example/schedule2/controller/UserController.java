@@ -52,5 +52,12 @@ public class UserController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    // 유저 삭제 기능
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        userService.delete(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
