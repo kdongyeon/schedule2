@@ -3,8 +3,10 @@ package com.example.schedule2.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "user")
 public class User extends BaseEntity {
@@ -34,6 +36,12 @@ public class User extends BaseEntity {
     }
 
     public void updatePassword(String password) {
+        this.password = password;
+    }
+
+    public void updateUser(String username, String email, String password) {
+        this.userName = username;
+        this.email=email;
         this.password = password;
     }
 }

@@ -2,8 +2,9 @@ package com.example.schedule2.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
-
+@Setter
 @Getter
 @Entity
 @Table(name = "schedule")
@@ -19,6 +20,8 @@ public class Schedule extends BaseEntity {
     @Column(columnDefinition = "longtext")
     private String content;
 
+    @Column(nullable = false)
+    private String writerUser;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -31,8 +34,13 @@ public class Schedule extends BaseEntity {
         this.content = content;
         this.title = title;
     }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void updateSchedule(String title, String content, String writerUser){
+        this.title = title;
+        this.content = content;
+        this.writerUser = writerUser;
     }
+
+
+
+
 }

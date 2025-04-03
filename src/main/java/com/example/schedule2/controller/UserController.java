@@ -1,10 +1,7 @@
 package com.example.schedule2.controller;
 
 
-import com.example.schedule2.dto.SignUpRequestDto;
-import com.example.schedule2.dto.SignUpResponseDto;
-import com.example.schedule2.dto.UpdatePasswordRequestDto;
-import com.example.schedule2.dto.UserResponseDto;
+import com.example.schedule2.dto.*;
 import com.example.schedule2.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -57,6 +54,17 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable Long id){
         userService.delete(id);
 
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //유저 수정 기능
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updateUser(
+            @PathVariable Long id,
+            @RequestBody UpdateUserRequestDto requestDto
+            ){
+
+        userService.updateUser(id, requestDto.getUsername(),requestDto.getEmail());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
