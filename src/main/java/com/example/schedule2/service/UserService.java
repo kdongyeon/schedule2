@@ -80,10 +80,11 @@ public class UserService {
 
     // 로그인 기능
     public UserResponseDto login(String email, String password) {
-        User user = userRepository.findByEmail(email).get();
+        User user = userRepository.findByEmail(email).orElse(null);
 
+        //orElse(null) 유저가 존재하지 않으면 null 처리
 
-        if (!user.getPassword().equals(password)) {
+        if (user == null || !user.getPassword().equals(password)) {
             return null;
         }
 
