@@ -1,6 +1,7 @@
 package com.example.schedule2.controller;
 
 
+import com.example.schedule2.dto.request.LoginRequestDto;
 import com.example.schedule2.dto.request.SignUpRequestDto;
 import com.example.schedule2.dto.request.UpdatePasswordRequestDto;
 import com.example.schedule2.dto.response.SignUpResponseDto;
@@ -8,9 +9,13 @@ import com.example.schedule2.dto.response.UpdateUserRequestDto;
 import com.example.schedule2.dto.response.UserResponseDto;
 import com.example.schedule2.service.UserService;
 
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,7 +25,7 @@ public class UserController {
 
     private final UserService userService;
 
-    // 회원가입 기능
+    // 유저 생성 기능
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponseDto> signUp(@RequestBody SignUpRequestDto requestDto){
 
@@ -73,6 +78,16 @@ public class UserController {
     }
 
     // 로그인 기능
+    @PostMapping("/login")
+    public ResponseEntity<UserResponseDto> login(
+            @RequestBody LoginRequestDto requestDto, HttpServletRequest request)
+    {
+        UserResponseDto userResponseDto = userService.login(requestDto.getEmail(),requestDto.getPassword());
 
+        // 세션 생성 및 유저정보 저장
+        HttpSession session = request.getSession(true);
+        session.setAttribute("user", userResponseDto);
+        return ResponseEntity.ok(userResponseDto);
+    }
 
 }

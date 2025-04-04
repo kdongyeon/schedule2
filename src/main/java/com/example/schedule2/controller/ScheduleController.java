@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-@RestController
+//@Responsebody = 뷰로 반환되는 것이 아니라 http 응답 바디에 데이터를 넣어 반환
+@RestController //@responsebody + @Controller
 @RequestMapping("/schedules")
 @RequiredArgsConstructor
 public class ScheduleController {
@@ -25,6 +25,8 @@ public class ScheduleController {
 
         ScheduleResponseDto scheduleResponseDto = scheduleService.save(requestDto.getTitle(), requestDto.getContent(), requestDto.getWriterUser());
 
+        // 반환은 Http 응답으로 표현 회원정보 요청을 처리하는 비즈니스 로직 수행 후 회원 정보를 응답으로 반환
+        // ResponseEntity<>() : 응답 데이터와 함께 Http 상태 코드를 포함하여 반환
         return new ResponseEntity<>(scheduleResponseDto, HttpStatus.CREATED);
     }
     //일정 전체 조회 기능

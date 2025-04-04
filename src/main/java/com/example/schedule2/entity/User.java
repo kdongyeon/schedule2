@@ -11,6 +11,7 @@ import lombok.Setter;
 @Table(name = "user")
 public class User extends BaseEntity {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,9 +40,8 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    public void updateUser(String username, String email, String password) {
-        this.userName = username;
-        this.email=email;
-        this.password = password;
+    public String getUsername() {
+        return userName;
     }
+
 }

@@ -15,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor //final 또는 @NonNull 필드만 포함하는 생성자 자동생성
 public class UserService {
 
     private final UserRepository userRepository;
@@ -27,7 +27,7 @@ public class UserService {
 
         User savedUser = userRepository.save(user);
 
-        return new SignUpResponseDto(savedUser.getId(),savedUser.getUserName());
+        return new SignUpResponseDto(savedUser.getId(),savedUser.getUsername());
 
     }
 
@@ -43,7 +43,7 @@ public class UserService {
 
         User findUser = optionalUser.get();
 
-        return new UserResponseDto(findUser.getUserName(),findUser.getEmail());
+        return new UserResponseDto(findUser.getId(), findUser.getUsername(),findUser.getEmail());
     }
 
     //  비밀번호 수정
@@ -78,4 +78,15 @@ public class UserService {
 
     }
 
+    // 로그인 기능
+    public UserResponseDto login(String email, String password) {
+        User user = userRepository.findByEmail(email).get();
+
+
+        if (!user.getPassword().equals(password)) {
+            return null;
+        }
+
+        return new UserResponseDto(user.getId(), user.getUsername(), user.getEmail());
+    }
 }

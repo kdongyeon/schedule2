@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor // 모든 생성자 자동생성
 public class LoginRequestDto {
     private String email;
     private String password;

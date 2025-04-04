@@ -1,7 +1,6 @@
 package com.example.schedule2.repository;
 
 import com.example.schedule2.entity.User;
-import com.example.schedule2.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,4 +20,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
         return findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id =" + id));
     }
+
+
+    Optional<User> findByEmail(String email);
 }
